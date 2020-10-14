@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Softline.Models;
+using System;
+using System.Linq;
 
 namespace Softline.Controllers
 {
@@ -26,7 +23,7 @@ namespace Softline.Controllers
         }
 
         [HttpPost]
-        public IActionResult Insert (User user)
+        public IActionResult Insert(User user)
         {
             if (user != null)
             {
@@ -35,11 +32,11 @@ namespace Softline.Controllers
                     _db.Users.Add(user);
                     _db.SaveChanges();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     _logger.LogError(ex, "Insert error");
                 }
-                
+
             }
             return RedirectToAction("Index");
         }
