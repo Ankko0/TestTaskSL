@@ -1,0 +1,59 @@
+﻿@model List<User>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Список сотрудников</title>
+
+</head>
+<body>
+    <h3>Сотрудники</h3>
+    <table>
+        <tr>
+            <td>ФИО:</td>
+            <td>Должность</td>
+            <td>Дата рождения</td>
+            <td>Описание</td>
+            <td>В декрете</td>
+            <td></td>
+        </tr>
+        @foreach (var phone in Model)
+        {
+            <tr>
+                <td>@phone.FullName</td>
+                <td>@phone.Position</td>
+                <td class="Birthday">@phone.Birthday</td>
+                <td>@phone.Description</td>
+                <td class="Materinity">@phone.MaternityLeave</td>
+            </tr>
+        }
+    </table>
+    <form method="post" action="Home/Insert">
+        <input type="text" placeholder="ФИО" name="FullName" /><br />
+        <input type="text" placeholder="Должность" name="Position" /><br />
+        <input type="date" placeholder="Дата рождения" name="Birthday" /><br />
+        <input type="text" placeholder="Описание" name="Description" /><br />
+        <label><input type="checkbox" value="true" name="MaternityLeave" />В декрете </label> <br />
+        <input type="submit" value="Отправить" />
+    </form>
+    <script>
+
+        var elem = document.getElementsByClassName("Materinity");
+
+        for (let el of elem) {
+            if (el.textContent === "True")
+                el.textContent = "Да"
+            else if (el.textContent === "False")
+                el.textContent = "Нет"
+        }
+        var dates = document.getElementsByClassName("Birthday");
+        for (let dt of dates)
+            dt.textContent = dt.textContent.split(' ')[0]
+
+    </script>
+</body>
+
+</html>
